@@ -5,7 +5,7 @@ const puppeteer = require("puppeteer");
     const page = await browser.newPage();
     await page.goto("https://quotes.toscrape.com/");
     await page.screenshot({ path: 'example.png' });
-
+//  thes to print the quotes according to the same classname
     const grab = await page.evaluate(() => {
         const quotes =  document.querySelectorAll('.quote')
         let quotesArr =[]
@@ -14,7 +14,7 @@ const puppeteer = require("puppeteer");
             const actualQuote = getInfo[0]
             const actualAuthor = getInfo[1]
 
-            const authorName = actualAuthor.querySelector("small")
+            const authorName = actualAuthor.querySelector("small")   // just to get authorname
 
             quotesArr.push({quote: actualQuote.innerText, author: authorName.innerText})
 
@@ -26,7 +26,10 @@ const puppeteer = require("puppeteer");
     })
 
     console.log(grab)
+
+
+ 
     
-    await browser.close()
+    await browser.close();
 
 })(); 
